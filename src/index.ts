@@ -1,5 +1,22 @@
-import cron from 'node-cron';
+import dotenv from "dotenv";
+dotenv.config();
 
-cron.schedule(`*/1 * * * *`, async () => {
-  console.log(`running your task...`);
+import { Client, GatewayIntentBits } from "discord.js";
+
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.DirectMessages,
+  ],
+});
+
+client.login(process.env.DISCORD_TOKEN);
+
+client.on("messageCreate", async (message) => {
+  console.log(message);
+  if (!message?.author.bot) {
+    message.author.send(`Echo ${message.content}`);
+  }
 });
