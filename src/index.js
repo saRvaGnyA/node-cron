@@ -16,7 +16,7 @@ client.login(process.env.DISCORD_TOKEN);
 
 client.on('guildMemberAdd', async (member) => {
   // console.log(member.guild.roles.guild.roles);
-  const role = await member.guild.roles.cache.get('1030058301288894464');
+  const role = await member.guild.roles.cache.get('1030058327121604639');
   await member.roles.add(role);
 
   const channelID = member.guild.systemChannelId;
